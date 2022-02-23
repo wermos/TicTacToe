@@ -1,0 +1,15 @@
+# VisualStudioCode
+.vscode/*
+*.code-workspace
+
+# Build directory
+build/*
+
+# Clangd
+.cache/*
+
+# Build output
+*.png
+*.jpg
+*.ppm
+*.json
