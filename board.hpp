@@ -22,6 +22,8 @@ class Board {
 
 		State checkWin() const;
 
+		bool isFull() const;
+		
 		void setCell(std::size_t index, const Move m);
 
 		void printBoard() const;
