@@ -1,24 +1,13 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#include "tic_tac_toe_enum.hpp"
+
 class Board {
 	public:
 		Board() : m_board({{None, None, None}, {None, None, None}, {None, None, None}}) {}
 
 		// Board(const Board& b) : m_board(b.m_board) {}
-
-		enum State : std::uint8_t {
-			XWin,
-			OWin,
-			Draw,
-			None,
-		};
-
-		enum Move : std::uint8_t {
-			None,
-			X,
-			O,
-		};
 
 		State checkWin() const;
 
