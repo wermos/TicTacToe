@@ -30,5 +30,5 @@ class Board {
 		Move m_board[3][3];
 };
 
-#endif //BOARD_HPP
+#endif // BOARD_HPP
 
