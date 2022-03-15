@@ -7,13 +7,12 @@
 // the user.
 class Player {
 	public:
+		void setMove(const Move m) {
+			m_move = m;
+		}
 
-	private:
-
-};
-
-class User : public Player {
-
+	protected:
+		Move m_move;
 };
 
 #endif // PLAYER_HPP
