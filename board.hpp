@@ -15,6 +15,8 @@ class Board {
 		
 		void setCell(std::size_t index, const Move m);
 
+		std::size_t nextEmptyCell() const;
+
 		void printBoard() const;
 
 	private:

@@ -49,6 +49,20 @@ State Board::checkWin() {
 	}
 }
 
+bool Board::isFull() {
+	for (auto& row : m_board) {
+		for (auto& elem : row) {
+			if (elem == Move::None) {
+				return false;
+			}
+		}
+	}
+
+	// then, none of the squares have the value of Move::None, meaning that
+	// the board is full
+	return true; 
+}
+
 void Board::setCell(std::size_t index, const Move m) {
 	/**
 	 * index must be an integer between 0 and 8, inclusive.
@@ -56,6 +70,18 @@ void Board::setCell(std::size_t index, const Move m) {
 	 * Move.
 	 */
 	m_board[index / 3][index % 3] = m;
+}
+
+std::size_t Board::nextEmptyCell() {
+	// Guaranteed to return the index of the next empty cell if the board is not
+	// full. Undefined behavior if the board is the full.
+	for (auto i = 0; i < 3; ++i) {
+		for (auto j = 0; j < 3; ++j) {
+			if (m_board[i][j] == State::None) {
+				return 3 * i + j;
+			}
+		}
+	}
 }
 
 void Board::printBoard() {
@@ -74,16 +100,3 @@ void Board::printBoard() {
 	}
 }
 
-bool Board::isFull() {
-	for (auto& row : m_board) {
-		for (auto& elem : row) {
-			if (elem == Move::None) {
-				return true;
-			}
-		}
-	}
-
-	// then, none of the squares have the value of Move::None, meaning that
-	// none of them are empty
-	return false; 
-}
