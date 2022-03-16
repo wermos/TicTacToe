@@ -7,6 +7,8 @@
 // the user.
 class Player {
 	public:
+		Player() = default;
+
 		void setMove(const Move m) {
 			m_move = m;
 		}
