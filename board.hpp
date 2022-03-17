@@ -5,17 +5,29 @@
 
 class Board {
 	public:
-		Board() : m_board({{None, None, None}, {None, None, None}, {None, None, None}}) {}
+		Board() : m_board({Move::None, Move::None, Move::None},
+				{Move::None, Move::None, Move::None},
+				{Move::None, Move::None, Move::None})
+		{}
 
-		// Board(const Board& b) : m_board(b.m_board) {}
+		// This copy constructor does a deep copy
+		Board(const Board& b) {
+			for (auto i = 0; i < 3; ++i) {
+				for (auto j = 0; j < 3; ++j) {
+					m_board[i][j] = b.m_board[i][j];
+				}
+			}
+		}
 
 		State checkWin() const;
 
 		bool isFull() const;
 		
-		void setCell(std::size_t index, const Move m);
+		void setCell(std::size_t index, Move m);
 
 		std::size_t nextEmptyCell() const;
+
+		Board copy() const;
 
 		void printBoard() const;
 

@@ -1,6 +1,7 @@
 #include "board.hpp"
+#include <iostream>
 
-State Board::checkWin() {
+State Board::checkWin() const {
 	// There is no way to check for wins using a for-each loop, so we have to
 	// settle for a classic index-based approach.
 
@@ -28,15 +29,15 @@ State Board::checkWin() {
 
 	// Checking for wins in diagonal directions
 	if (m_board[0][0] == m_board[1][1] && m_board[1][1] == m_board[2][2]) {
-		if (m_board[0][j] == Move::X) {
+		if (m_board[0][0] == Move::X) {
 			return State::XWin;
-		} else if (m_board[0][j] == Move::O) {
+		} else if (m_board[0][0] == Move::O) {
 			return State::OWin;
 		}
 	} else if (m_board[0][2] == m_board[1][1] && m_board[1][1] == m_board[2][0]) {
-		if (m_board[0][j] == Move::X) {
+		if (m_board[0][2] == Move::X) {
 			return State::XWin;
-		} else if (m_board[0][j] == Move::O) {
+		} else if (m_board[0][2] == Move::O) {
 			return State::OWin;
 		}
 	}
@@ -49,7 +50,7 @@ State Board::checkWin() {
 	}
 }
 
-bool Board::isFull() {
+bool Board::isFull() const {
 	for (auto& row : m_board) {
 		for (auto& elem : row) {
 			if (elem == Move::None) {
@@ -63,7 +64,7 @@ bool Board::isFull() {
 	return true; 
 }
 
-void Board::setCell(std::size_t index, const Move m) {
+void Board::setCell(std::size_t index, Move m) {
 	/**
 	 * index must be an integer between 0 and 8, inclusive.
 	 * This function simply sets the i'th cell to the required
@@ -72,19 +73,19 @@ void Board::setCell(std::size_t index, const Move m) {
 	m_board[index / 3][index % 3] = m;
 }
 
-std::size_t Board::nextEmptyCell() {
+std::size_t Board::nextEmptyCell() const {
 	// Guaranteed to return the index of the next empty cell if the board is not
 	// full. Undefined behavior if the board is the full.
 	for (auto i = 0; i < 3; ++i) {
 		for (auto j = 0; j < 3; ++j) {
-			if (m_board[i][j] == State::None) {
+			if (m_board[i][j] == Move::None) {
 				return 3 * i + j;
 			}
 		}
 	}
 }
 
-void Board::printBoard() {
+void Board::printBoard() const {
 	for (auto& row : m_board) {
 		for (auto& elem : row) {
 			if (elem == Move::None) {
