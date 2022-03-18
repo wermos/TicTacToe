@@ -11,10 +11,16 @@ class Player {
 
 		void setMove(const Move m) {
 			m_move = m;
+			if (m_move == Move::X) {
+				m_opponentMove = Move::O;
+			} else {
+				m_opponentMove = Move::X;
+			}
 		}
 
 	protected:
 		Move m_move;
+		Move m_opponentMove;
 };
 
 #endif // PLAYER_HPP
