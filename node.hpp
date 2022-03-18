@@ -59,9 +59,9 @@ struct Node {
 		if (board.checkWin() == State::XWin && maximizingMove == Move::X) {
 			weight = Weight::AIWin;
 		} else if (board.checkWin() == State::OWin && maximizingMove == Move::O) {
-			weight = Weight::PlayerWin;
-		} else if (board.checkWin() == State::OWin && maximizingMove == Move::X) {
 			weight = Weight::AIWin;
+		} else if (board.checkWin() == State::OWin && maximizingMove == Move::X) {
+			weight = Weight::PlayerWin;
 		} else if (board.checkWin() == State::XWin && maximizingMove == Move::O) {
 			weight = Weight::PlayerWin;
 		} else if (board.isFull()) {
