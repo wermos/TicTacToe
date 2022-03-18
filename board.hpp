@@ -2,6 +2,7 @@
 #define BOARD_HPP
 
 #include "tic_tac_toe_enum.hpp"
+#include <vector>
 
 class Board {
 	public:
@@ -25,9 +26,7 @@ class Board {
 		
 		void setCell(std::size_t index, Move m);
 
-		std::size_t nextEmptyCell() const;
-
-		Board copy() const;
+		std::vector<std::size_t> emptyCells() const;
 
 		void printBoard() const;
 

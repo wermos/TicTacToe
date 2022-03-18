@@ -1,5 +1,6 @@
 #include "board.hpp"
 #include <iostream>
+#include <vector>
 
 State Board::checkWin() const {
 	// There is no way to check for wins using a for-each loop, so we have to
@@ -73,23 +74,25 @@ void Board::setCell(std::size_t index, Move m) {
 	m_board[index / 3][index % 3] = m;
 }
 
-std::size_t Board::nextEmptyCell() const {
+std::vector<std::size_t> Board::emptyCells() const {
 	// Guaranteed to return the index of the next empty cell if the board is not
-	// full. Undefined behavior if the board is the full.
+	// full. Returns 100 if the board is full.
+	std::vector<std::size_t> empty;
 	for (auto i = 0; i < 3; ++i) {
 		for (auto j = 0; j < 3; ++j) {
 			if (m_board[i][j] == Move::None) {
-				return 3 * i + j;
+				empty.push_back(3 * i + j);
 			}
 		}
 	}
+	return empty;
 }
 
 void Board::printBoard() const {
 	for (auto& row : m_board) {
 		for (auto& elem : row) {
 			if (elem == Move::None) {
-				std::cout << " ";
+				std::cout << "E";
 			} else if (elem == Move::X) {
 				std::cout << "X";
 			} else {
