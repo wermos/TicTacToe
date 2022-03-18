@@ -1,7 +1,7 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#include "tic_tac_toe_enum.hpp"
+#include "enum.hpp"
 #include <vector>
 
 class Board {
@@ -20,7 +20,7 @@ class Board {
 			}
 		}
 
-		State checkWin() const;
+		State state() const;
 
 		bool isFull() const;
 		
@@ -28,7 +28,7 @@ class Board {
 
 		std::vector<std::size_t> emptyCells() const;
 
-		void printBoard() const;
+		void print() const;
 
 	private:
 		Move m_board[3][3];

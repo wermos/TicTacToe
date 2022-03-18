@@ -1,5 +1,5 @@
-#ifndef TREE_FWD_HPP
-#define TREE_FWD_HPP
+#ifndef NODE_HPP
+#define NODE_HPP
 
 #include <type_traits>
 #include <vector>
@@ -27,23 +27,7 @@ enum Weight : std::int8_t {
 	None = 1,         // None means the game hasn't ended yet. For the reasons
 					  // mentioned above, None > Draw.
 	AIWin = 100,      // the best scenario; deserves the highest score
-	//operator std::int8_t(const Weight& w) {
-	//	return static_cast<std::underlying_type<Weight>>(w);
-	//}
 };
-
-/**
-std::underlying_type<Weight> operator+(Weight w1, Weight w2) {
-	return static_cast<std::underlying_type<Weight>>(w1) + static_cast<std::underlying_type<Weight>>(w2);
-}
-
-std::int8_t operator+(const std::int8_t w1, Weight w2) {
-	return w1 + static_cast<std::underlying_type<Weight>>(w2);
-}
-
-std::int8_t operator+(Weight w1, const std::int8_t w2) {
-	return static_cast<std::underlying_type<Weight>>(w1) + w2;
-}*/
 
 // asdf
 struct Node {
@@ -52,17 +36,15 @@ struct Node {
 	std::int8_t weight; // stores how favorable the current board position is
 	//Diff d; // stores the difference between the previous board position and the current one
 	Board board;
-	//Move maximizingMove;
-	// the move we want to maximize the value for; this is in essence the AI's move
 
 	std::int8_t terminalNodeWeight(Move maximizingMove) {
-		if (board.checkWin() == State::XWin && maximizingMove == Move::X) {
+		if (board.state() == State::XWin && maximizingMove == Move::X) {
 			weight = Weight::AIWin;
-		} else if (board.checkWin() == State::OWin && maximizingMove == Move::O) {
+		} else if (board.state() == State::OWin && maximizingMove == Move::O) {
 			weight = Weight::AIWin;
-		} else if (board.checkWin() == State::OWin && maximizingMove == Move::X) {
+		} else if (board.state() == State::OWin && maximizingMove == Move::X) {
 			weight = Weight::PlayerWin;
-		} else if (board.checkWin() == State::XWin && maximizingMove == Move::O) {
+		} else if (board.state() == State::XWin && maximizingMove == Move::O) {
 			weight = Weight::PlayerWin;
 		} else if (board.isFull()) {
 			weight = Weight::Draw;
@@ -88,4 +70,4 @@ struct Node {
 	}*/
 };
 
-#endif // TREE_FWD_HP
+#endif // NODE_HPP

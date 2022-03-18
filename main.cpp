@@ -1,8 +1,7 @@
 #include <iostream>
 
-#include "tic_tac_toe_enum.hpp"
+#include "enum.hpp"
 #include "board.hpp"
-#include "player.hpp"
 #include "ai.hpp"
 
 int main() {
@@ -25,7 +24,7 @@ int main() {
 
 	State gameState = State::None;
 	while (!gameBoard.isFull() && gameState == State::None) {
-		gameState = gameBoard.checkWin();
+		gameState = gameBoard.state();
 
 		if (gameState == State::XWin) {
 			if (playerMove == Move::X) {
@@ -48,10 +47,10 @@ int main() {
 			std::cin >> move;
 
 			gameBoard.setCell(move, playerMove);
-			gameBoard.printBoard();
+			gameBoard.print();
 			std::cout << "\n\n";
 			gameBoard.setCell(ai.bestMove(gameBoard), AIMove);
-			gameBoard.printBoard();
+			gameBoard.print();
 		}
 	}
 }

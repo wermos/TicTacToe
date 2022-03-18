@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-State Board::checkWin() const {
+State Board::state() const {
 	// There is no way to check for wins using a for-each loop, so we have to
 	// settle for a classic index-based approach.
 
@@ -88,7 +88,7 @@ std::vector<std::size_t> Board::emptyCells() const {
 	return empty;
 }
 
-void Board::printBoard() const {
+void Board::print() const {
 	for (auto& row : m_board) {
 		for (auto& elem : row) {
 			if (elem == Move::None) {

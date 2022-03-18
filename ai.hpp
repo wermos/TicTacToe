@@ -5,14 +5,22 @@
 #include <cstdint> // for std::int8_t
 #include <iostream>
 
-#include "tic_tac_toe_enum.hpp"
+#include "enum.hpp"
 #include "node.hpp"
 #include "board.hpp"
-#include "player.hpp"
 
-class AI : public Player {
+class AI {
 	public:
 		AI() = default;
+
+		void setMove(const Move m) {
+			m_move = m;
+			if (m_move == Move::X) {
+				m_opponentMove = Move::O;
+			} else {
+				m_opponentMove = Move::X;
+			}
+		}
 
 		std::size_t bestMove(Board currentBoard) {
 			currentState.board = currentBoard;
@@ -23,7 +31,7 @@ class AI : public Player {
 		std::int8_t minimax(
 				Node* node, std::int8_t alpha, std::int8_t beta,
 				std::size_t depth, bool maximizingPlayer) {
-			if (node->board.isFull() || node->board.checkWin() != State::None) {
+			if (node->board.isFull() || node->board.state() != State::None) {
 				if (maximizingPlayer) {
 					// std::cout << "inside termination condition\n";
 					return node->terminalNodeWeight(m_move);
@@ -77,6 +85,8 @@ class AI : public Player {
 	private:
 		Node currentState;
 		std::size_t bestMoveIndex;
+		Move m_move;
+		Move m_opponentMove;
 		const static std::int8_t neg_inf = std::numeric_limits<std::int8_t>::min();
 		const static std::int8_t pos_inf = std::numeric_limits<std::int8_t>::max();
 };
