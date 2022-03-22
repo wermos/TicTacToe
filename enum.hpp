@@ -1,5 +1,5 @@
-#ifndef TIC_TAC_TOE_ENUM_HPP
-#define TIC_TAC_TOE_ENUM_HPP
+#ifndef ENUM_HPP
+#define ENUM_HPP
 
 #include <cstdint> // for std::uint8_t
 
@@ -17,4 +17,4 @@ enum class Move : std::uint8_t {
 	O,
 };
 
-#endif // TIC_TAC_TOE_ENUM_HPP
+#endif // ENUM_HPP
