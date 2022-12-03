@@ -47,9 +47,11 @@ int main() {
 			std::cin >> move;
 
 			gameBoard.setCell(move, playerMove);
+			std::cout << "Board before:\n";
 			gameBoard.print();
 			std::cout << "\n\n";
 			gameBoard.setCell(ai.bestMove(gameBoard), AIMove);
+			std::cout << "Board after:\n";
 			gameBoard.print();
 		}
 	}

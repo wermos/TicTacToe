@@ -24,7 +24,7 @@ class AI {
 
 		std::size_t bestMove(Board currentBoard) {
 			currentState.board = currentBoard;
-			minimax(&currentState, neg_inf, pos_inf, 0, false);
+			minimax(&currentState, neg_inf, pos_inf, 0, true);
 			return bestMoveIndex;
 		}
 
@@ -44,11 +44,12 @@ class AI {
 				if (maximizingPlayer) {
 					value = neg_inf;
 
-					Board newBoard;
 					for (auto& index : node->board.emptyCells()) {
-						newBoard = node->board; // making a deep copy
+						Board newBoard = node->board; // making a deep copy
 						newBoard.setCell(index, m_move);
-						// newBoard.printBoard();
+						std::cout << "Trial:\n";
+						newBoard.print();
+						std::cout << "\n";
 						Node childNode(node, {}, neg_inf, newBoard);
 						node->children.push_back(&childNode);
 
@@ -61,20 +62,23 @@ class AI {
 							value = newWeight;
 						}
 						// std::cout << "inside while loop maximizing\n";
+						std::cout << "Value: " << value << '\n';
 					}
 				} else { // minimizing player
 					value = pos_inf;
 
-					Board newBoard;
 					for (auto& index : node->board.emptyCells()) {
-						newBoard = node->board; // making a deep copy
+						Board newBoard = node->board; // making a deep copy
 						newBoard.setCell(index, m_opponentMove);
-						// newBoard.printBoard();
+						std::cout << "Trial:\n";
+						newBoard.print();
+						std::cout << "\n";
 						Node childNode(node, {}, neg_inf, newBoard);
 						node->children.push_back(&childNode);
 
 						value = std::min(value, minimax(&childNode, alpha, value, depth + 1, true));
 
+						std::cout << "Value: " << value << '\n';
 						// std::cout << "inside while loop minimizing\n";
 					}
 				}	
