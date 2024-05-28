@@ -1,5 +1,4 @@
-#ifndef ENUM_HPP
-#define ENUM_HPP
+#pragma once
 
 #include <cstdint> // for std::uint8_t
 
@@ -16,5 +15,3 @@ enum class Move : std::uint8_t {
 	X,
 	O,
 };
-
-#endif // ENUM_HPP
