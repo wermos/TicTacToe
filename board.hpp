@@ -1,14 +1,13 @@
-#ifndef BOARD_HPP
-#define BOARD_HPP
+#pragma once
 
 #include "enum.hpp"
 #include <vector>
 
 class Board {
 	public:
-		Board() : m_board({Move::None, Move::None, Move::None},
+		Board() : m_board{{Move::None, Move::None, Move::None},
 				{Move::None, Move::None, Move::None},
-				{Move::None, Move::None, Move::None})
+				{Move::None, Move::None, Move::None}}
 		{}
 
 		// This copy constructor does a deep copy
@@ -33,6 +32,3 @@ class Board {
 	private:
 		Move m_board[3][3];
 };
-
-#endif // BOARD_HPP
-

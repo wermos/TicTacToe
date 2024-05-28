@@ -60,8 +60,8 @@ bool Board::isFull() const {
 		}
 	}
 
-	// then, none of the squares have the value of Move::None, meaning that
-	// the board is full
+	// if we got to this point, then none of the squares have the value of
+	// `Move::None	, meaning that the board is full
 	return true; 
 }
 
@@ -77,7 +77,9 @@ void Board::setCell(std::size_t index, Move m) {
 std::vector<std::size_t> Board::emptyCells() const {
 	// Guaranteed to return the index of the next empty cell if the board is not
 	// full. Returns 100 if the board is full.
+	// TODO: Update comment.
 	std::vector<std::size_t> empty;
+	
 	for (auto i = 0; i < 3; ++i) {
 		for (auto j = 0; j < 3; ++j) {
 			if (m_board[i][j] == Move::None) {
