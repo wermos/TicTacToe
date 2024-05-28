@@ -1,5 +1,4 @@
-#ifndef AI_HPP
-#define AI_HPP
+#pragma once
 
 #include <limits>
 #include <cstdint> // for std::int8_t
@@ -91,8 +90,6 @@ class AI {
 		std::size_t bestMoveIndex;
 		Move m_move;
 		Move m_opponentMove;
-		const static std::int8_t neg_inf = std::numeric_limits<std::int8_t>::min();
-		const static std::int8_t pos_inf = std::numeric_limits<std::int8_t>::max();
+		constexpr static std::int8_t neg_inf = std::numeric_limits<std::int8_t>::min();
+		constexpr static std::int8_t pos_inf = std::numeric_limits<std::int8_t>::max();
 };
-
-#endif // AI_HPP
